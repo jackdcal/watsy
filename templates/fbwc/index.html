@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+
+<head>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5176313527120579",
+    enable_page_level_ads: true
+  });
+</script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>WatSport Watch Football - 2018 FIFA Men's World Cup Russia - Sport TV Guide</title>
+  
+  <meta name="description" content="Ever wanted to know at what time is the gameon? A TV Guide for your sports tv binge. Find what TV channel the game is on and at what timeit starts. Never miss the big show again. The 2018 FIFA Men's World Cup Russia starts on June 14 through 15 July 2018 so get ready."/>
+
+  <script type="application/ld+json">
+    {% for game in object_list %}
+    {
+      "@context":"http://schema.org",
+      "@type":"BroadcastEvent",
+      "name": "2018 FIFA Men's World Cup Russia",
+      "description": "{{ game.team1 }} vs. {{ game.team2 }}",
+      "isLiveBroadcast": "http://schema.org/True",
+      "startDate": "{{ game.date|date:"Y-m-d" }}T{{ game.start_time|time:"H:i" }}",
+      "URL":"http://wats.dreamhosters.com/",
+      "broadcastOfEvent": {
+        "@type": "SportsEvent",
+        "name": "2018 FIFA Men's World Cup Russia",
+        "description": "{{ game.team1 }} vs. {{ game.team2 }}",
+        "competitor": [
+          {
+            "@type": "SportsTeam",
+            "name": "{{ game.team1 }}"
+          },
+          {
+            "@type": "SportsTeam",
+            "name": "{{ game.team2 }}"
+          }
+        ],
+        "startDate": "{{ game.date|date:"Y-m-d" }}T{{ game.start_time|time:"H:i" }}",
+        "Duration":"01:45:00",
+        "location" : {
+          "@type" : "Place",
+          "name" : "{{ game.venue }}",
+          "address" : {
+            "@type" : "PostalAddress",
+             "addressLocality" : "{{ game.venue.city }}",
+             "addressCountry" : "RU"
+             }
+         }
+      }
+    }
+    {% endfor %}
+
+
+    </script>
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="/static/fbwc/css/awzom.css" rel=stylesheet type="text/css">
+  <link href="/static/fbwc/css/flags.css" rel=stylesheet type="text/css">
+  <link href="/static/fbwc/assets/docs.css" rel="stylesheet" type="text/css">
+  <link href="/static/fbwc/css/flag-icon.css" rel="stylesheet" type="text/css">
+
+{% load static %}
+</head>
+
+<body>
+  <div class="w3-top">
+    <div class="w3-bar w3-large topnav">
+      <div class- "w3-cell">
+        {% url 'wats.dreamhost.com' as the_url %}
+        <a href="{{ the_url }}">
+		<div class="w3-wide w3-xxlarge w3-container w3-display-left sitetitle">
+          <b>
+            <strong>WatSport</strong>
+          </b>
+        </div>
+		</a>
+        <div class="w3-display-right">
+          <a href="#group_list" class="w3-bar-item w3-button w3-hide-small">Groups</a>
+          <a href="#team_list" class="w3-bar-item w3-button w3-hide-small">Teams</a>
+          <a href="#footer" class="w3-bar-item w3-button w3-hide-small">About</a>
+        </div>
+        <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="myFunction()">&#9776;</a>
+      </div>
+
+      <div class="w3-bar-block w3-red w3-hide w3-hide-large w3-hide-medium">
+        <a href="#group_list" class="w3-bar-item w3-button">Link 1</a>
+        <a href="#team_list" class="w3-bar-item w3-button">Link 2</a>
+        <a href="#" class="w3-bar-item w3-button">Link 3</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-container" style="padding-top:60px;">
+    <div class="w3-row-padding w3-center">
+
+      <div class="w3-col m9 w3-centre">
+
+        <div class="w3-row">
+          <div class="w3-col m4 w3-centre">
+            <div class="w3-card-4 w3-green w3-mobile" style="width:96%">
+              <p>{% now "jS F Y H:i" %} </p>
+            </div>
+          </div>
+          <div class="w3-col m4">
+            <div class="w3-card-4 w3-green w3-mobile" style="width:96%">
+              {% with startdate="2018-06-14" %}
+              <p>Starting on {{ startdate }}</p>
+              {% endwith %}
+            </div>
+          </div>
+          <div class="w3-col m4">
+            <div class="w3-card-4 w3-green w3-mobile" style="width:96%">
+              <p>Live your passion</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div>
+          {% for gr in grl %} {% if forloop.first %}
+          <div>
+            <div class="w3-row">{% endif %}
+
+              <div class="w3-col m6 l3">
+
+                <div class="w3-card w3-mobile w3-center" style="width:96%">
+                  <header class="w3-container w3-light-blue">
+                      <p>
+                        <strong>Group {{gr.group}}</strong>
+                      </p>
+                    </header>
+                  
+                  <div>
+                    {% for game in object_list %} {% if game.team1.group == gr.group %}
+                    <div>
+                      <p style="font-size:12px;">
+                        <strong style="font-weight:700;">{{ game.team1 }} - {{ game.team2 }}</strong>
+                        <br> {{game.date|date:"D d M Y"}} at {{game.start_time}}</div>
+                    <hr style="width:80%;margin:-4px;"></hr>{% if forloop.last %}{% endif %} {% endif %} {% endfor %} </p>
+                  </div>
+                </div>
+
+              </div>
+              {% if forloop.last %}
+            </div>
+          </div>
+          {% endif %}{% endfor %}
+
+        </div>
+      </div>
+
+      <div class="w3-col m3 w3-pink w3-center w3-hide-small" style="height:400px;position:sticky;top:90px;">
+	  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<script> (adsbygoogle = window.adsbygoogle || []).push({
+		google_ad_client: "ca-pub-5176313527120579",
+		enable_page_level_ads: true
+		});
+		</script> 
+	  </div>
+      <div class="w3-col m3 w3-pink w3-center w3-hide-medium" style="height:400px;">
+	  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<script> (adsbygoogle = window.adsbygoogle || []).push({
+		google_ad_client: "ca-pub-5176313527120579",
+		enable_page_level_ads: true
+		});
+		</script>
+	  
+	  </div>
+
+
+      <div id="group_list">
+        <div id="team_list" class="w3-col m9 w3-center" style="padding-top: 25px">
+
+
+
+          {% for team in teaml %} {% if forloop.first %}
+          <table class="w3-table w3-light-grey" style="padding-top:30px;font-size:12px;">
+            {% endif %}
+
+            <tr>
+              <td>
+                <span class="flag-icon flag-icon-{{ team.country|lower }}" title="{{ team.country|lower }}"></span>
+              </td>
+              <td>{{ team }}</td>
+              <td>Gr. {{team.group}}</td>
+              <td>
+                <a href="{{team.website}}" target="_blank">Web</a>
+              </td>
+
+            </tr>
+
+            {% if forloop.last %}
+          </table>
+
+          {% endif %} {% empty %} The list is on it is way. Stay tuned. {% endfor %}
+        </div>
+      </div>
+
+      <div id="game_details">
+        <div class="w3-col m9 w3-center" style="padding-top:25px;font-size:12px;">
+
+
+          
+          {% for game in object_list %}
+        <div class="w3-container">
+          <div class="w3-card w3-light-gray">
+          <h1 id=#{{ game.slug }}><span class="flag-icon flag-icon-background flag-icon-{{ game.team1.country|lower }}" style="height:60%"></span> {{ game.team1 }} - {{ game.team2 }}
+            <span class="flag-icon flag-icon-{{ game.team2.country|lower }}" title="{{ game.team2.name }}" style="height:60%"></span></h1>
+          
+          <p> {{ game.date }} {{ game.start_time }}</p>
+          <p>Stadium: {{ game.venue }} City: {{ game.venue.city }}</p>
+          <p>Channels: {% for channel in game.channels.all %}
+            <a href="{{channel.website}}" target="_blank">{{ channel }} </a> {% endfor %}</p>
+          </div>
+        </div>
+          {% endfor %}
+
+
+
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+  </div>
+
+
+
+
+  </div>
+  <footer id="footer" class="footer"><p>Copyright &copy; WatSport 2018</p></footer>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("demo");
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+      } else {
+        x.className = x.className.replace(" w3-show", "");
+      }
+    }
+  </script>
+</body>
+
+</html>
